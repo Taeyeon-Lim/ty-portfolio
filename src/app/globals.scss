@@ -1,0 +1,141 @@
+div,
+span,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+abbr,
+address,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+samp,
+small,
+strong,
+sub,
+sup,
+var,
+b,
+i,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section,
+summary,
+time,
+mark,
+audio,
+video,
+button {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+}
+
+html,
+body {
+  width: 100vw;
+  max-width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-size: 62.5%;
+  font-family: var(--font-Roboto), var(--font-NotoSansKR), sans-serif;
+  background: transparent;
+  appearance: none;
+  overflow: hidden auto;
+
+  & > h1 {
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    border: 0;
+    overflow: hidden;
+    position: absolute;
+    clip-path: polygon(0 0, 0 0, 0 0);
+  }
+}
+
+a {
+  text-decoration: initial;
+  color: initial;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+.root-loader_wrap {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  & > .root-loader {
+    width: 150px;
+    height: 150px;
+
+    margin: 0 auto;
+
+    border: 15px solid #e1e4e7;
+    border-radius: 50%;
+    border-top: 15px solid rgb(100, 209, 136);
+    box-sizing: border-box;
+
+    animation: spinner 4s linear infinite;
+
+    @keyframes spinner {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  }
+}
