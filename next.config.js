@@ -3,7 +3,7 @@ const path = require('path');
 
 const nextConfig = {
   env: {
-    domainURL: 'https://ty-portfolio.vercel.app/',
+    domainURL: 'https://tyeon-portfolio.vercel.app',
   },
   images: {
     formats: ['image/avif', 'image/webp'],
