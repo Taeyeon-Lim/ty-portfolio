@@ -1,15 +1,17 @@
 import './globals.scss';
 
-import { Analytics } from '@vercel/analytics/react';
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
+import Navigator from '@components/Navigator';
+import ChannelTalkBoot from '@components/ChannelTalkBoot';
+import { Analytics } from '@vercel/analytics/react';
 
 import { DOMAIN_URL } from '@utils/env';
 
 const notoSansKR_set = localFont({
   src: [
     {
-      path: '../../public/fonts/NotoSansKR-Bold.woff2',
+      path: '../../public/fonts/NotoSansKR-Light.woff2',
       weight: '300',
     },
     {
@@ -78,6 +80,42 @@ export const metadata: Metadata = {
   },
 };
 
+const naviLink = [
+  {
+    name: '이메일',
+    path: 'mailto:wingofyeon@naver.com',
+    imagePath: '/home/email.png',
+    backgroundColor: '#ffffff',
+    color: '#000000',
+    target: true,
+  },
+  {
+    name: '깃허브',
+    path: 'https://github.com/Taeyeon-Lim',
+    imagePath: '/home/github-mark-white.png',
+    backgroundColor: '#000000',
+    color: '#ffffff',
+    target: true,
+  },
+  {
+    name: '포트폴리오',
+    path: '/',
+    // path: '/portfolio',
+    imagePath: '/portfolio.svg',
+    backgroundColor: '#FFE3BB',
+    color: '#000000',
+    target: false,
+  },
+  {
+    name: 'Home',
+    path: '/',
+    imagePath: '/house.png',
+    backgroundColor: '#F9F7F7',
+    color: '#000000',
+    target: false,
+  },
+];
+
 export default function RootLayout({
   children,
 }: {
@@ -113,11 +151,15 @@ export default function RootLayout({
       </head>
 
       <body>
-        <h1>{META_PROJECT_NAME}</h1>
+        <h1 className='hide-header'>{META_PROJECT_NAME}</h1>
 
         {children}
 
-        <Analytics mode='production' />
+        <Navigator links={naviLink} />
+        <ChannelTalkBoot />
+        {process.env.NODE_ENV === 'production' && (
+          <Analytics mode='production' />
+        )}
       </body>
     </html>
   );

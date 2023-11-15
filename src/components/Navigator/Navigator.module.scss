@@ -1,0 +1,79 @@
+$channelTalkButtonHeight: 56px;
+
+.blur-background {
+  background-color: tomato;
+
+  padding: 12px;
+  border-radius: 8px;
+
+  position: fixed;
+  bottom: $channelTalkButtonHeight + 7.5px;
+  right: 1%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+
+  touch-action: none;
+
+  @media (min-width: 500px) {
+    bottom: $channelTalkButtonHeight + 30px;
+    right: 28px;
+  }
+
+  & > .link {
+    width: $channelTalkButtonHeight;
+    height: $channelTalkButtonHeight;
+    border-radius: 50%;
+
+    & > a {
+      width: 100%;
+      height: 100%;
+
+      font-weight: bold;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      border-radius: inherit;
+      overflow: hidden;
+    }
+  }
+
+  & > .view-link {
+    width: $channelTalkButtonHeight;
+    height: $channelTalkButtonHeight;
+
+    border-radius: 50%;
+    border: none;
+
+    position: relative;
+    z-index: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-clip: content-box;
+    touch-action: none;
+
+    &:focus-visible {
+      outline-offset: 2;
+      outline: #569aff99 auto 6px;
+    }
+
+    & > span {
+      width: 100%;
+      height: 100%;
+      background-color: #fafafa;
+
+      border-radius: inherit;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}
