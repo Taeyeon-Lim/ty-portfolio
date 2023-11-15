@@ -87,7 +87,7 @@ body {
   appearance: none;
   overflow: hidden auto;
 
-  & > h1 {
+  & .hide-header {
     width: 1px;
     height: 1px;
     margin: -1px;
@@ -96,6 +96,16 @@ body {
     overflow: hidden;
     position: absolute;
     clip-path: polygon(0 0, 0 0, 0 0);
+  }
+
+  & > main {
+    width: 100%;
+    max-width: 1200px;
+    height: 100%;
+
+    margin: 0 auto;
+    font-size: 1.6rem;
+    line-height: 1;
   }
 }
 
