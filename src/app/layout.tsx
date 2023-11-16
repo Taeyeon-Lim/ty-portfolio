@@ -80,42 +80,6 @@ export const metadata: Metadata = {
   },
 };
 
-const naviLink = [
-  {
-    name: '이메일',
-    path: 'mailto:wingofyeon@naver.com',
-    imagePath: '/home/email.png',
-    backgroundColor: '#ffffff',
-    color: '#000000',
-    target: true,
-  },
-  {
-    name: '깃허브',
-    path: 'https://github.com/Taeyeon-Lim',
-    imagePath: '/home/github-mark-white.png',
-    backgroundColor: '#000000',
-    color: '#ffffff',
-    target: true,
-  },
-  {
-    name: '포트폴리오',
-    path: '/',
-    // path: '/portfolio',
-    imagePath: '/portfolio.svg',
-    backgroundColor: '#FFE3BB',
-    color: '#000000',
-    target: false,
-  },
-  {
-    name: 'Home',
-    path: '/',
-    imagePath: '/house.png',
-    backgroundColor: '#F9F7F7',
-    color: '#000000',
-    target: false,
-  },
-];
-
 export default function RootLayout({
   children,
 }: {
@@ -155,7 +119,7 @@ export default function RootLayout({
 
         {children}
 
-        <Navigator links={naviLink} />
+        <Navigator />
         <ChannelTalkBoot />
         {process.env.NODE_ENV === 'production' && (
           <Analytics mode='production' />

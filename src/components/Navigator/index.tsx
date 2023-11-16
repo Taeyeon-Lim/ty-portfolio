@@ -4,32 +4,57 @@ import styles from './Navigator.module.scss';
 import classNames from 'classnames/bind';
 const cx = classNames.bind(styles);
 
-import { useLayoutEffect, useRef } from 'react';
+import React, { useLayoutEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
 import { useHover } from '@use-gesture/react';
 import { a, useSpring, useSprings } from '@react-spring/web';
+import { usePathname } from 'next/navigation';
 
-function Navigator({
-  links,
-}: {
-  links: {
-    name: string;
-    path: string;
-    imagePath: string;
-    backgroundColor: string;
-    color: string;
-    target: boolean;
-  }[];
-}) {
+const NAVI_LINKS = [
+  {
+    name: '이메일',
+    path: 'mailto:wingofyeon@naver.com',
+    imagePath: '/home/email.png',
+    backgroundColor: '#ffffff',
+    color: '#000000',
+    target: true,
+  },
+  {
+    name: '깃허브',
+    path: 'https://github.com/Taeyeon-Lim',
+    imagePath: '/home/github-mark-white.png',
+    backgroundColor: '#000000',
+    color: '#ffffff',
+    target: true,
+  },
+  {
+    name: '포트폴리오',
+    path: '/',
+    // path: '/portfolio',
+    imagePath: '/portfolio.svg',
+    backgroundColor: '#FFE3BB',
+    color: '#000000',
+    target: false,
+  },
+  {
+    name: 'Home',
+    path: '/',
+    imagePath: '/house.png',
+    backgroundColor: '#F9F7F7',
+    color: '#000000',
+    target: false,
+  },
+];
+
+function Navigator() {
   const buttonRef = useRef<HTMLDivElement>(null!);
   const avatarRefs = useRef<HTMLDivElement[]>([]);
   const avatarRefInitialPositions = useRef<number[]>([]);
-  // const containerRef = useRef<HTMLDivElement>(null!);
 
-  const isVisible = useRef(false);
-  const isMobile = useRef(false);
+  const isVisible = useRef(false); // for mouse
+  const isTouch = useRef(false); // for touch
 
   const [{ opacity, viewLinkbuttonColor }, api] = useSpring(
     () => ({ opacity: 0, viewLinkbuttonColor: '#6579D4' }),
@@ -37,7 +62,7 @@ function Navigator({
   );
 
   const [avatarSprings, avatarApi] = useSprings(
-    links.length,
+    NAVI_LINKS.length,
     () => ({ y: 0, opacity: 0 }),
     []
   );
@@ -70,8 +95,6 @@ function Navigator({
       clearTimeout(avatarTimeoutRef.current);
     }
 
-    isVisible.current = true;
-
     api.start({
       opacity: 1,
       viewLinkbuttonColor: '#d64d4d',
@@ -83,130 +106,110 @@ function Navigator({
     });
   };
 
-  const close = (isMobile: boolean) => {
-    console.log('close', isMobile);
-    backgroundTimeoutRef.current = setTimeout(
-      () => {
-        api.start({
-          opacity: 0,
-          viewLinkbuttonColor: '#6579D4',
-        });
-      },
-      isMobile ? 1000 : 750
-    );
+  const close = (delay: [number, number]) => {
+    backgroundTimeoutRef.current = setTimeout(() => {
+      api.start({
+        opacity: 0,
+        viewLinkbuttonColor: '#6579D4',
+      });
+    }, delay[0]);
 
-    avatarTimeoutRef.current = setTimeout(
-      () => {
-        avatarApi.start(i => ({
-          y: avatarRefInitialPositions.current[i],
+    avatarTimeoutRef.current = setTimeout(() => {
+      avatarApi.start(i => ({
+        y: avatarRefInitialPositions.current[i],
 
-          opacity: i === 0 ? 0 : 1 / (i * 1.2),
+        opacity: i === 0 ? 0 : 1 / (i * 1.2),
 
-          onRest: () => {
-            isVisible.current = false;
-          },
-        }));
-      },
-      isMobile ? 2000 : 1000
-    );
+        onRest: () => {
+          isVisible.current = false;
+          isTouch.current = false;
+        },
+      }));
+    }, delay[1]);
   };
 
-  const bindHover = useHover(
-    state => {
-      const { hovering } = state;
-
-      if (hovering) {
-        open();
-      } else {
-        close(false);
-      }
-    },
-    {
-      mouseOnly: false,
+  const bindHover = useHover(({ hovering }) => {
+    // mouse event
+    if (hovering) {
+      isVisible.current = true;
+      open();
+    } else {
+      close([600, 1000]);
     }
-  );
+  });
 
   const {
     onPointerEnter,
     onPointerLeave,
-    // onPointerDown,
+    onPointerDown,
+    onPointerUp,
     ...restGestures
   } = bindHover();
 
-  // const handlePointerDown =
-  //   (isBackground: boolean) => (e: React.PointerEvent<HTMLElement>) => {
-  //     e.stopPropagation();
+  const handlePointerDown = (e: React.PointerEvent<HTMLElement>) => {
+    if (isVisible.current) return;
 
-  //     if (isBackground && !isVisible.current) return;
+    if (onPointerDown) onPointerDown(e);
 
-  //     if (onPointerDown) onPointerDown(e);
-  //   };
-
-  const handleOnPointerLeave =
-    (isBackground: boolean) => (e: React.PointerEvent<HTMLElement>) => {
-      e.stopPropagation();
-
-      if (isBackground && !isVisible.current) return;
-
-      if (onPointerLeave) onPointerLeave(e);
-    };
-
-  const handleClick = () => (e: React.MouseEvent<HTMLElement>) => {
-    e.stopPropagation();
-
-    console.log('click - ', isVisible.current);
-
-    if (isVisible.current) {
-      close(true);
+    if (isTouch.current) {
+      close([0, 400]);
     } else {
+      isTouch.current = true;
       open();
     }
   };
 
+  const pathname = usePathname();
+
   return (
     <a.nav
-      // ref={containerRef}
-      // onPointerLeave={onPointerLeave}
-      onPointerLeave={handleOnPointerLeave(false)}
-      // onPointerDown={handlePointerDown(true)}
+      onPointerLeave={onPointerLeave}
       {...restGestures}
       style={{
         backgroundColor: opacity.to(o => `rgba(0, 0, 0, ${0.2 * o})`),
         backdropFilter: opacity.to(o => `blur(${o * 8}px)`),
+        touchAction: opacity.to(o => (o === 0 ? 'auto' : 'none')),
       }}
       className={cx('blur-background')}
     >
       {avatarSprings.map((springs, index) => (
         <a.div
-          key={links[index].name}
+          key={NAVI_LINKS[index].name}
           ref={ref => (avatarRefs.current[index] = ref!)}
           style={{
-            y: springs.y,
-            backgroundColor: links[index].backgroundColor,
+            ...springs,
+            backgroundColor: NAVI_LINKS[index].backgroundColor,
           }}
           className={cx('link')}
         >
           <Link
-            href={links[index].path}
-            target={links[index].target ? '_blank' : '_self'}
-            onClick={() => {
-              if (links[index].name === '포트폴리오') {
+            href={NAVI_LINKS[index].path}
+            target={NAVI_LINKS[index].target ? '_blank' : '_self'}
+            onClick={e => {
+              if (NAVI_LINKS[index].name === '포트폴리오') {
                 alert('곧 작성이 완료됩니다..!');
               }
+
+              if (pathname === NAVI_LINKS[index].path) {
+                e.preventDefault();
+                return;
+              }
+
+              if (isVisible.current || isTouch.current) close([0, 400]);
             }}
           >
             <Image
-              src={links[index].imagePath}
-              alt={links[index].name}
+              src={NAVI_LINKS[index].imagePath}
+              alt={NAVI_LINKS[index].name}
               width={24}
               height={24}
             />
             <div
               style={{
-                color: links[index].color,
+                color: NAVI_LINKS[index].color,
               }}
             >
-              {links[index].name}
+              {NAVI_LINKS[index].name}
             </div>
           </Link>
         </a.div>
@@ -214,17 +217,8 @@ function Navigator({
 
       <a.div
         ref={buttonRef}
+        onPointerDown={handlePointerDown}
         onPointerEnter={onPointerEnter}
-        // onClick={() => {
-        //   console.log('click', isVisible.current);
-        //   if (isVisible.current) {
-        //     close(true);
-        //   } else {
-        //     open();
-        //   }
-        // }}
-        onClick={handleClick}
-        // onPointerDown={handlePointerDown(false)}
         {...restGestures}
         style={{
           boxShadow: opacity.to(
