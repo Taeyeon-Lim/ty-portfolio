@@ -14,8 +14,10 @@ function ChannelTalkBoot() {
         pluginKey: CHNNERTALK_PLUGIN_KEY,
       },
       (error: any, user: any) => {
-        if (error) {
-          console.log('ChannelTalk boot error!');
+        if (process.env.NODE_ENV === 'development') {
+          if (error) {
+            console.log('ChannelTalk boot error!');
+          }
         }
       }
     );
