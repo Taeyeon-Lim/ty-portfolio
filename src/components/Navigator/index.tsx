@@ -187,11 +187,16 @@ function Navigator() {
             target={NAVI_LINKS[index].target ? '_blank' : '_self'}
             onClick={e => {
               if (NAVI_LINKS[index].name === '포트폴리오') {
+                e.preventDefault();
                 alert('곧 작성이 완료됩니다..!');
+                return;
               }
 
               if (pathname === NAVI_LINKS[index].path) {
                 e.preventDefault();
+
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                close([0, 400]);
                 return;
               }
 
