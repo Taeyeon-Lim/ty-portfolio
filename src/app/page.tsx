@@ -5,7 +5,7 @@ const cx = classNames.bind(styles);
 import Image from 'next/image';
 import Link from 'next/link';
 
-import ChannelTalkButton from '@components/home/ChannelTalkButton';
+import ChannelTalkButton from '@app/_Home/ChannelTalkButton';
 
 export default function Home() {
   return (
@@ -164,18 +164,20 @@ export default function Home() {
                     코드 스플리팅, 비동기 데이터 Suspense 등으로 초기 로딩 속도
                     개선
                   </li>
-                  <li>유저 피드백을 통한 가입 전환율 개선</li>
                   <li>
                     페이지 별 성격에 맞게 SSR, CSR, SSG, ISR 페이지 제작 및 캐시
                     설정
                   </li>
-                  <li>포트원을 통한 결제 페이지 제작</li>
+                  <li>포트원을 통한 결제 연동</li>
+                  <li>유저 피드백을 통한 가입 전환율 개선</li>
                   <li>유저 타입별 랜딩 가이드 페이지 제작</li>
                   <li>재사용 가능한 컴포넌트 제작</li>
-                  <li>next/Image를 통한 이미지 사이즈별 최적화 및 lazy 로딩</li>
                   <li>
-                    반자동 SEO 구현, 접근성 등 최적화 (Lighthouse 항목 최저{' '}
-                    {'>'} 96)
+                    next/Image를 통한 이미지 사이즈(size)별 최적화 및 lazy 로딩
+                  </li>
+                  <li>
+                    반자동 SEO 구현 및 Lihgthouse 성능, 접근성 등 최적화 (항목
+                    최저 {'>'} 96)
                   </li>
                 </ul>
               </div>
