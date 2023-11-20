@@ -1,6 +1,9 @@
 .home {
   width: 100%;
+  max-width: 1200px;
   height: 100%;
+
+  margin: 0 auto;
 
   // 최근 업데이트 일시
   & > .updated-date {
