@@ -1,0 +1,44 @@
+.page-error {
+  width: 100%;
+  height: 100%;
+
+  font-size: 1.75rem;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  & > .button {
+    width: 200px;
+    max-width: 100%;
+    height: 45px;
+    max-height: fit-content;
+
+    color: #ffffff;
+
+    font-size: 1.6rem;
+    padding: 1rem 1.5rem;
+    border-radius: 5px;
+    box-sizing: border-box;
+
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
+    &.reset {
+      background-color: #df6969;
+
+      margin-bottom: 0.5rem;
+      cursor: pointer;
+    }
+
+    &.go-home {
+      background-color: #697fdf;
+    }
+
+    &.back {
+      background-color: #8b8b8b;
+    }
+  }
+}
