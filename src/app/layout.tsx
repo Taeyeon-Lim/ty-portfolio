@@ -8,10 +8,7 @@ const Navigator = dynamic(() => import('@components/Navigator'));
 const ChannelTalkBoot = dynamic(() => import('@components/ChannelTalkBoot'), {
   ssr: false,
 });
-const Analytics = dynamic(
-  () => import('@vercel/analytics/react').then(mod => mod.Analytics),
-  { ssr: false }
-);
+import { Analytics } from '@vercel/analytics/react';
 
 import { DOMAIN_URL } from '@utils/env';
 
