@@ -201,6 +201,7 @@ function Navigator() {
           <Link
             href={NAVI_LINKS[index].path}
             target={NAVI_LINKS[index].target ? '_blank' : '_self'}
+            rel={NAVI_LINKS[index].target ? 'noreferrer noopener' : undefined}
             onClick={e => {
               e.stopPropagation();
 
