@@ -1,12 +1,15 @@
 'use client';
 
 import styles from '@app/Home.module.scss';
-import ChannelTalkService from '@utils/channelTalkService';
 import classNames from 'classnames/bind';
 const cx = classNames.bind(styles);
 
 import Image from 'next/image';
 import Link from 'next/link';
+
+import ChannelTalkService from '@utils/channelTalkService';
+
+import { BASE64_PLACEHOLDER } from '@utils/env';
 
 function ChannelTalkButton() {
   const openChannelTalk = () => {
@@ -22,8 +25,8 @@ function ChannelTalkButton() {
         height={60}
         src={'/home/channelTalk.jpg'}
         alt='channelTalk-logo'
-        priority
         className={cx('channelTalk', 'shadow')}
+        placeholder={BASE64_PLACEHOLDER}
       />
       <span>Talk</span>
     </Link>

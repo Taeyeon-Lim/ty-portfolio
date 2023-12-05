@@ -7,6 +7,8 @@ import Link from 'next/link';
 
 import ChannelTalkButton from '@app/_Home/ChannelTalkButton';
 
+import { BASE64_PLACEHOLDER } from '@utils/env';
+
 export default function Home() {
   return (
     <main className={cx('home')}>
@@ -21,8 +23,8 @@ export default function Home() {
               width={125}
               height={125}
               src={'/profile.jpg'}
-              alt='profile-image'
-              priority
+              alt={'profile-image'}
+              placeholder={BASE64_PLACEHOLDER}
             />
           </figure>
 
@@ -51,9 +53,9 @@ export default function Home() {
                   width={40}
                   height={40}
                   src={'/home/email.png'}
-                  alt='email-logo'
-                  priority
+                  alt={'email-logo'}
                   className={cx('shadow')}
+                  placeholder={BASE64_PLACEHOLDER}
                 />
 
                 <span>e-mail</span>
@@ -66,9 +68,9 @@ export default function Home() {
                   width={40}
                   height={40}
                   src={'/home/github-mark-white.png'}
-                  alt='github-logo'
-                  priority
+                  alt={'github-logo'}
                   className={cx('github', 'shadow')}
+                  placeholder={BASE64_PLACEHOLDER}
                 />
 
                 <span>Github</span>

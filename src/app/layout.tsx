@@ -2,6 +2,7 @@ import './globals.scss';
 
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
+
 import Navigator from '@components/Navigator';
 import ChannelTalkBoot from '@components/ChannelTalkBoot';
 import { Analytics } from '@vercel/analytics/react';

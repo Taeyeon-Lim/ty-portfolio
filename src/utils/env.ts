@@ -9,3 +9,7 @@ export const CHANNER_SECRET_KEY = JSON.parse(
 export const CHNNERTALK_PLUGIN_KEY = JSON.parse(
   JSON.stringify(process.env.channerTalkPluginKey)
 );
+
+export const BASE64_PLACEHOLDER = JSON.parse(
+  JSON.stringify(process.env.base64Placeholder)
+);

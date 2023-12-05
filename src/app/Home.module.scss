@@ -11,13 +11,10 @@
     padding-right: 1rem;
     box-sizing: border-box;
 
+    color: #909090;
     font-weight: 300;
     font-size: 1.5rem;
     text-align: end;
-
-    @media (min-width: 500px) {
-      font-size: 1.6rem;
-    }
   }
 
   & > section {
@@ -85,7 +82,8 @@
           & > figure {
             width: 125px;
             height: 125px;
-            border-radius: 75%;
+
+            border-radius: 50%;
             overflow: hidden;
           }
 
@@ -303,9 +301,11 @@
             & > ul {
               display: flex;
               flex-direction: column;
+              line-height: 1.25;
 
               @media (min-width: 1200px) {
                 flex-direction: row;
+                line-height: 1;
               }
 
               &.list-up {
