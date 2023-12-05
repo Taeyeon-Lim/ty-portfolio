@@ -4,13 +4,15 @@ import styles from './Navigator.module.scss';
 import classNames from 'classnames/bind';
 const cx = classNames.bind(styles);
 
-import React, { useLayoutEffect, useRef } from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
-
-import { useHover } from '@use-gesture/react';
-import { a, useSpring, useSprings } from '@react-spring/web';
+import { useLayoutEffect, useRef, PointerEvent } from 'react';
 import { usePathname } from 'next/navigation';
+import Image from 'next/image';
+import Link from 'next/link';
+
+import useAnimateState from '@app/portfolio/_Components/Store';
+import { a, useSpring, useSprings } from '@react-spring/web';
+import { useShallow } from 'zustand/react/shallow';
+import { useHover } from '@use-gesture/react';
 
 const NAVI_LINKS = [
   {
@@ -31,8 +33,7 @@ const NAVI_LINKS = [
   },
   {
     name: '포트폴리오',
-    path: '/',
-    // path: '/portfolio',
+    path: '/portfolio',
     imagePath: '/portfolio.svg',
     backgroundColor: '#FFE3BB',
     color: '#000000',
@@ -49,6 +50,11 @@ const NAVI_LINKS = [
 ];
 
 function Navigator() {
+  // for Portfolio page
+  const updateAstronautAnimation = useAnimateState(
+    useShallow(s => s.updateAstronautAnimation)
+  );
+
   const buttonRef = useRef<HTMLDivElement>(null!);
   const avatarRefs = useRef<HTMLDivElement[]>([]);
   const avatarRefInitialPositions = useRef<number[]>([]);
@@ -128,7 +134,9 @@ function Navigator() {
     }, delay[1]);
   };
 
-  const bindHover = useHover(({ hovering }) => {
+  const bindHover = useHover(({ hovering, event }) => {
+    event.stopPropagation();
+
     // mouse event
     if (hovering) {
       isVisible.current = true;
@@ -146,7 +154,9 @@ function Navigator() {
     ...restGestures
   } = bindHover();
 
-  const handlePointerDown = (e: React.PointerEvent<HTMLElement>) => {
+  const handlePointerDown = (e: PointerEvent<HTMLElement>) => {
+    e.stopPropagation();
+
     if (isVisible.current) return;
 
     if (onPointerDown) onPointerDown(e);
@@ -178,6 +188,12 @@ function Navigator() {
           ref={ref => (avatarRefs.current[index] = ref!)}
           style={{
             ...springs,
+            display: springs.y.to(y => {
+              if (y === avatarRefInitialPositions.current[index]) {
+                return 'none';
+              }
+              return 'block';
+            }),
             backgroundColor: NAVI_LINKS[index].backgroundColor,
           }}
           className={cx('link')}
@@ -186,20 +202,19 @@ function Navigator() {
             href={NAVI_LINKS[index].path}
             target={NAVI_LINKS[index].target ? '_blank' : '_self'}
             onClick={e => {
-              if (NAVI_LINKS[index].name === '포트폴리오') {
-                e.preventDefault();
-                alert('곧 작성이 완료됩니다..!');
-                return;
-              }
+              e.stopPropagation();
 
               if (pathname === NAVI_LINKS[index].path) {
                 e.preventDefault();
 
                 window.scrollTo({ top: 0, behavior: 'smooth' });
+
                 close([0, 400]);
+
                 return;
               }
 
+              if (pathname !== '/portfolio') updateAstronautAnimation('wave');
               if (isVisible.current || isTouch.current) close([0, 400]);
             }}
           >

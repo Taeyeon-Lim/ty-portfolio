@@ -63,7 +63,11 @@ export default function Home() {
             </li>
 
             <li>
-              <Link href={'https://github.com/Taeyeon-Lim'} target='_blank'>
+              <Link
+                href={'https://github.com/Taeyeon-Lim'}
+                target='_blank'
+                rel='noreferrer noopener'
+              >
                 <Image
                   width={40}
                   height={40}
