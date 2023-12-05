@@ -34,7 +34,7 @@ type ThemeInfo = {
   position: Vector3;
 };
 
-import { PortfolioTheme_Hangul, ThemeTypeArray } from '../layout';
+import { PortfolioTheme_Hangul, ThemeTypeArray } from '../_Types';
 const TRANSITION_TIME = 1000;
 const THEME_INFOS: Record<NonNullable<Themes>, ThemeInfo> = {
   0: {
