@@ -118,8 +118,6 @@ function ThemeContent({ theme }: { theme: Themes }) {
         opacity: 1,
         delay: TRANSITION_TIME,
         onStart: () => {
-          console.log('useEffect');
-
           updateAnimateState('progress', true);
         },
         onRest: () => {
