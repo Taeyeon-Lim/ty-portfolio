@@ -42,6 +42,7 @@ export function middleware(request: NextRequest) {
     contentSecurityPolicyHeaderValue
   );
 
+  // 악성 코드를 request header에 심는 것 방지 (response 헤더를 직접 반환)
   const response = NextResponse.next({
     request: {
       headers: requestHeaders,
