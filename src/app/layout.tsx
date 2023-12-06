@@ -125,12 +125,9 @@ export default function RootLayout({
 
         <Navigator />
 
-        {process.env.NODE_ENV === 'production' && (
-          <>
-            <ChannelTalkBoot />
-            <Analytics mode='production' />
-          </>
-        )}
+        <Analytics mode='production' />
+
+        {process.env.NODE_ENV === 'production' && <ChannelTalkBoot />}
       </body>
     </html>
   );
