@@ -4,13 +4,13 @@ import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import dynamic from 'next/dynamic';
 
-const Navigator = dynamic(() => import('@components/Navigator'));
-const ChannelTalkBoot = dynamic(() => import('@components/ChannelTalkBoot'), {
+const Navigator = dynamic(() => import('@Components/Navigator'));
+const ChannelTalkBoot = dynamic(() => import('@Components/ChannelTalkBoot'), {
   ssr: false,
 });
 import { Analytics } from '@vercel/analytics/react';
 
-import { DOMAIN_URL } from '@utils/env';
+import { DOMAIN_URL } from '@Utils/env';
 
 const notoSansKR_set = localFont({
   src: [
@@ -125,9 +125,15 @@ export default function RootLayout({
 
         <Navigator />
 
-        <Analytics mode='production' />
+        {process.env.NODE_ENV === 'production' && (
+          <>
+            {/* Prevent local CSP error message */}
+            <Analytics mode='production' />
 
-        {process.env.NODE_ENV === 'production' && <ChannelTalkBoot />}
+            {/* only production */}
+            <ChannelTalkBoot />
+          </>
+        )}
       </body>
     </html>
   );

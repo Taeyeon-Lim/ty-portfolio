@@ -1,8 +1,8 @@
 'use client';
 
 import { useEffect } from 'react';
-import ChannelTalkService from '@utils/channelTalkService';
-import { CHANNER_SECRET_KEY, CHNNERTALK_PLUGIN_KEY } from '@utils/env';
+import ChannelTalkService from '@Utils/channelTalkService';
+import { CHANNER_SECRET_KEY, CHNNERTALK_PLUGIN_KEY } from '@Utils/env';
 
 function ChannelTalkBoot() {
   useEffect(() => {

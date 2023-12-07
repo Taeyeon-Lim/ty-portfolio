@@ -1,15 +1,15 @@
 'use client';
 
-import styles from '@app/Home.module.scss';
+import styles from '@App/Home.module.scss';
 import classNames from 'classnames/bind';
 const cx = classNames.bind(styles);
 
 import Image from 'next/image';
 import Link from 'next/link';
 
-import ChannelTalkService from '@utils/channelTalkService';
+import ChannelTalkService from '@Utils/channelTalkService';
 
-import { BASE64_PLACEHOLDER } from '@utils/env';
+import { BASE64_PLACEHOLDER } from '@Utils/env';
 
 function ChannelTalkButton() {
   const openChannelTalk = () => {

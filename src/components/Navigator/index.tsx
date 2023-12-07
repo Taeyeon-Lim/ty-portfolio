@@ -9,7 +9,7 @@ import { usePathname } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import useAnimateState from '@app/portfolio/_Components/Store';
+import useAnimateState from '@App/portfolio/_Components/Store';
 import { a, useSpring, useSprings } from '@react-spring/web';
 import { useShallow } from 'zustand/react/shallow';
 import { useHover } from '@use-gesture/react';

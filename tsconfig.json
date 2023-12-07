@@ -20,11 +20,11 @@
     ],
     "baseUrl": ".",
     "paths": {
-      "@public/*": ["public/*"],
-      "@app/*": ["src/app/*"],
-      "@components/*": ["src/components/*"],
-      "@hooks/*": ["src/hooks/*"],
-      "@utils/*": ["src/utils/*"]
+      "@Public/*": ["public/*"],
+      "@App/*": ["src/app/*"],
+      "@Components/*": ["src/components/*"],
+      "@Hooks/*": ["src/hooks/*"],
+      "@Utils/*": ["src/utils/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

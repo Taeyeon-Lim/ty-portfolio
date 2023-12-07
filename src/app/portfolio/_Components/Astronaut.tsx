@@ -10,7 +10,7 @@ import {
   useTimeout,
   useInterval,
   useUpdateSearchParams,
-} from '@hooks/hookUtils';
+} from '@Hooks/hookUtils';
 import { a, useSpring } from '@react-spring/three';
 import { useShallow } from 'zustand/react/shallow';
 

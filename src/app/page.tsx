@@ -5,9 +5,9 @@ const cx = classNames.bind(styles);
 import Image from 'next/image';
 import Link from 'next/link';
 
-import ChannelTalkButton from '@app/_Home/ChannelTalkButton';
+import ChannelTalkButton from '@App/_Home/ChannelTalkButton';
 
-import { BASE64_PLACEHOLDER } from '@utils/env';
+import { BASE64_PLACEHOLDER } from '@Utils/env';
 
 export default function Home() {
   return (

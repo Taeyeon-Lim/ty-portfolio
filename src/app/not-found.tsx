@@ -1,4 +1,4 @@
-import PageError from '@components/PageError';
+import PageError from '@Components/PageError';
 
 export default function NotFound() {
   return (

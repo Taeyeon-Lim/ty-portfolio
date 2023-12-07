@@ -15,7 +15,7 @@ import {
   EffectComposer,
 } from '@react-three/postprocessing';
 
-import CanvasLoader from '@components/Loader/CanvasLoader';
+import CanvasLoader from '@Components/Loader/CanvasLoader';
 import Astronaut from './_Components/Astronaut';
 import Basecamp from './_Components/Basecamp';
 const WelcomeText = lazy(() => import('./_Components/WelcomeText'));

@@ -22,7 +22,7 @@ const Text = dynamic(() => import('@react-three/drei').then(mod => mod.Text), {
 const AnimatedCylinder = animated(Cylinder);
 const AnimatedText = animated(Text);
 
-import { useUpdateSearchParams } from '@hooks/hookUtils';
+import { useUpdateSearchParams } from '@Hooks/hookUtils';
 import { animated, useSpring } from '@react-spring/web';
 
 import useAnimateState from './Store';
@@ -205,23 +205,23 @@ function ThemeContent({ theme }: { theme: Themes }) {
                 onClick={async e => {
                   e.stopPropagation();
 
-                  handlePointerOut();
-                  alert('곧 업데이트 됩니다..!');
+                  // handlePointerOut();
+                  // alert('곧 업데이트 됩니다..!');
 
-                  //   if (theme && animateState === 'idle') {
-                  //     handlePointerOut();
+                  if (theme && animateState === 'idle') {
+                    handlePointerOut();
 
-                  //     updateAnimateState('end', true);
+                    updateAnimateState('end', true);
 
-                  //     updateSearchParam(
-                  //       null,
-                  //       null,
-                  //       ['view'],
-                  //       `/portfolio/${ThemeTypeArray[parseInt(theme)]}`
-                  //     );
+                    updateSearchParam(
+                      null,
+                      null,
+                      ['view'],
+                      `/portfolio/${ThemeTypeArray[parseInt(theme)]}`
+                    );
 
-                  //     updateAnimateState('idle', true);
-                  //   }
+                    updateAnimateState('idle', true);
+                  }
                 }}
               />
             </Float>
