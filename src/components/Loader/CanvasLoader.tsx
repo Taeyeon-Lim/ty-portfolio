@@ -23,7 +23,6 @@ function CanvasLoader({
   const uniqueAlt = useId();
   const { active, progress } = useProgress();
 
-  console.log(fontColor, textShadow);
   return (
     <div className={cx('canvas-loader')}>
       <Image
