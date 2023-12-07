@@ -11,6 +11,7 @@ const nextConfig = {
   },
   images: {
     formats: ['image/avif', 'image/webp'],
+    minimumCacheTTL: 31536000,
   },
   sassOptions: {
     includePaths: [path.join(__dirname, 'styles')],
