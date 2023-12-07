@@ -15,7 +15,7 @@ import {
   EffectComposer,
 } from '@react-three/postprocessing';
 
-import PortfolioLoader from './_Components/PortfolioLoader';
+import CanvasLoader from '@components/Loader/CanvasLoader';
 import Astronaut from './_Components/Astronaut';
 import Basecamp from './_Components/Basecamp';
 const WelcomeText = lazy(() => import('./_Components/WelcomeText'));
@@ -68,9 +68,7 @@ const Rig = ({ theme }: { theme: Themes }) => {
   }, [theme, vec]);
 
   useFrame(() => {
-    if (isControlCamera) {
-      handleCamera();
-    }
+    if (isControlCamera) handleCamera();
   });
 
   return <CameraControls ref={control} />;
@@ -89,10 +87,10 @@ export default function Portfolio({
         <WelcomeText reverse={theme !== null} />
       </Suspense>
 
-      <Suspense fallback={<PortfolioLoader />}>
+      <Suspense fallback={<CanvasLoader imageSrc={'/portfolio/loading.png'} />}>
         <Canvas
           gl={{ antialias: false }}
-          dpr={[1, 1.5]}
+          dpr={[0.5, 2]}
           camera={{
             fov: 60,
             position: initialCamera,
