@@ -87,7 +87,14 @@ export default function Portfolio({
         <WelcomeText reverse={theme !== null} />
       </Suspense>
 
-      <Suspense fallback={<CanvasLoader imageSrc={'/portfolio/loading.png'} />}>
+      <Suspense
+        fallback={
+          <CanvasLoader
+            imageSrc={'/portfolio/loading.png'}
+            fontColor='#e29e63'
+          />
+        }
+      >
         <Canvas
           gl={{ antialias: false }}
           dpr={[0.5, 2]}

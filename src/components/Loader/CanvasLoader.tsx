@@ -11,10 +11,19 @@ import { useProgress } from '@react-three/drei';
 /**
  * @param imageSrc  정적 이미지 경로 권장
  */
-function CanvasLoader({ imageSrc }: { imageSrc: string }) {
+function CanvasLoader({
+  imageSrc,
+  fontColor = '#000000',
+  textShadow = '1px 1px 2px #111111, 0 0 1em #ffffff, 0 0 0.2em #ffffff',
+}: {
+  imageSrc: string;
+  fontColor?: string;
+  textShadow?: string;
+}) {
   const uniqueAlt = useId();
   const { active, progress } = useProgress();
 
+  console.log(fontColor, textShadow);
   return (
     <div className={cx('canvas-loader')}>
       <Image
@@ -37,7 +46,7 @@ function CanvasLoader({ imageSrc }: { imageSrc: string }) {
         }}
       />
 
-      <div className={cx('progress')}>
+      <div style={{ color: fontColor, textShadow }} className={cx('progress')}>
         {active ? '..' : ''}
         {progress.toFixed(0)}%
       </div>
