@@ -5,35 +5,15 @@
   background-color: #ffe5cf;
   position: relative;
 
-  // portfolioLoader.tsx
-  & > .portfolio-loader {
-    width: 100%;
-    height: 100%;
-    position: relative;
-
-    & > img {
-      object-fit: cover;
-    }
-
-    & > .progress {
-      color: #e29e63;
-      font-size: 5rem;
-      font-weight: 700;
-      text-shadow: 1px 1px 2px #111111, 0 0 1em #ffffff, 0 0 0.2em #ffffff;
-
-      position: absolute;
-      right: 20px;
-      top: 20px;
-      z-index: 2;
-    }
-  }
-
   // WelcomeText.tsx
   & > .text-position {
     color: #fefefe;
     font-weight: 700;
     line-height: 0.8;
     font-size: 8rem;
+
+    position: absolute;
+    z-index: 2;
 
     @media (min-width: 550px) {
       font-size: 10rem;
@@ -60,7 +40,7 @@
 
       white-space: nowrap;
       position: fixed;
-      z-index: 1;
+      z-index: 4;
 
       &.portfolio {
         display: inline-flex;
