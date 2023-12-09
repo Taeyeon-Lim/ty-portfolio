@@ -3,8 +3,8 @@ import { GroupProps } from '@react-three/fiber';
 import { useGLTF } from '@react-three/drei';
 
 import { GLTF } from 'three-stdlib';
-
 import { Themes } from '../page';
+
 type GLTFResult = GLTF & {
   nodes: {
     Object_2: THREE.Mesh;
@@ -72,13 +72,20 @@ type GLTFResult = GLTF & {
   };
 };
 
+// type ContextType = Record<
+//   string,
+//   React.ForwardRefExoticComponent<JSX.IntrinsicElements['mesh']>
+// >;
+
 export default function Basecamp({
   theme,
   ...props
 }: {
   theme: Themes;
 } & GroupProps) {
-  const { nodes, materials } = useGLTF('/portfolio/basecamp.glb') as GLTFResult;
+  const { nodes, materials } = useGLTF(
+    '/portfolio/basecamp_draco/basecamp.gltf'
+  ) as GLTFResult;
 
   return (
     <group {...props} position={[0, 0, 5]} dispose={null}>
@@ -235,4 +242,4 @@ export default function Basecamp({
   );
 }
 
-useGLTF.preload('/portfolio/basecamp.glb');
+useGLTF.preload('/portfolio/basecamp_draco/basecamp.gltf');

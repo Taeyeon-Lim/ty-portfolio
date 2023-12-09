@@ -34,6 +34,16 @@ type GLTFResult = GLTF & {
   };
 };
 
+// type ActionName = 'floating' | 'idle' | 'wave' | 'moon_walk';
+// type GLTFActions = Record<ActionName, THREE.AnimationAction>;
+
+// type ContextType = Record<
+//   string,
+//   React.ForwardRefExoticComponent<
+//     JSX.IntrinsicElements['skinnedMesh'] | JSX.IntrinsicElements['bone']
+//   >
+// >;
+
 const INIT_SPRING_VALUE = {
   position: [-16, 6.5, 14],
   rotation: [0, Math.PI * -0.35, Math.PI * 0.025] as any,
@@ -48,15 +58,8 @@ export default function Astronaut({
   const group = useRef<Group>(null!);
 
   const { nodes, materials, animations } = useGLTF(
-    '/portfolio/astronaut.glb'
+    '/portfolio/astronaut_draco/astronaut.gltf'
   ) as GLTFResult;
-
-  const instances = useMemo(
-    () => ({
-      ...nodes,
-    }),
-    [nodes]
-  );
 
   const { actions } = useAnimations(animations, group);
 
@@ -215,7 +218,7 @@ export default function Astronaut({
               <group name='RootNode0_0' scale={0.01}>
                 <group name='skeletal3_6'>
                   <group name='GLTF_created_0'>
-                    <primitive object={instances.GLTF_created_0_rootJoint} />
+                    <primitive object={nodes.GLTF_created_0_rootJoint} />
 
                     <group name='_3_correction'>
                       <group name='_3' />
@@ -231,9 +234,9 @@ export default function Astronaut({
 
                     <skinnedMesh
                       name='Object_99'
-                      geometry={instances.Object_99.geometry}
+                      geometry={nodes.Object_99.geometry}
                       material={materials.material_0}
-                      skeleton={instances.Object_99.skeleton}
+                      skeleton={nodes.Object_99.skeleton}
                     >
                       <Outlines
                         angle={Math.PI}
@@ -247,23 +250,23 @@ export default function Astronaut({
 
                     <skinnedMesh
                       name='Object_100'
-                      geometry={instances.Object_100.geometry}
+                      geometry={nodes.Object_100.geometry}
                       material={materials.material_0}
-                      skeleton={instances.Object_100.skeleton}
+                      skeleton={nodes.Object_100.skeleton}
                     />
 
                     <skinnedMesh
                       name='Object_103'
-                      geometry={instances.Object_103.geometry}
+                      geometry={nodes.Object_103.geometry}
                       material={materials.material_1}
-                      skeleton={instances.Object_103.skeleton}
+                      skeleton={nodes.Object_103.skeleton}
                     />
 
                     <skinnedMesh
                       name='Object_106'
-                      geometry={instances.Object_106.geometry}
+                      geometry={nodes.Object_106.geometry}
                       material={materials.material_2}
-                      skeleton={instances.Object_106.skeleton}
+                      skeleton={nodes.Object_106.skeleton}
                     >
                       <Outlines
                         angle={Math.PI}
@@ -289,4 +292,4 @@ export default function Astronaut({
   );
 }
 
-useGLTF.preload('/portfolio/astronaut.glb');
+useGLTF.preload('/portfolio/astronaut_draco/astronaut.gltf');
