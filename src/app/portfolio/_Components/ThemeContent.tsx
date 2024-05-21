@@ -202,26 +202,26 @@ function ThemeContent({ theme }: { theme: Themes }) {
                 }
                 onPointerOver={handlePointerOver(false)}
                 onPointerOut={handlePointerOut}
-                onClick={async e => {
+                onClick={e => {
                   e.stopPropagation();
 
-                  // handlePointerOut();
-                  // alert('곧 업데이트 됩니다..!');
+                  handlePointerOut();
+                  alert('곧 업데이트 됩니다..!');
 
-                  if (theme && animateState === 'idle') {
-                    handlePointerOut();
+                  // if (theme && animateState === 'idle') {
+                  //   handlePointerOut();
 
-                    updateAnimateState('end', true);
+                  //   updateAnimateState('end', true);
 
-                    updateSearchParam(
-                      null,
-                      null,
-                      ['view'],
-                      `/portfolio/${ThemeTypeArray[parseInt(theme)]}`
-                    );
+                  //   updateSearchParam(
+                  //     null,
+                  //     null,
+                  //     ['view'],
+                  //     `/portfolio/${ThemeTypeArray[parseInt(theme)]}`
+                  //   );
 
-                    updateAnimateState('idle', true);
-                  }
+                  //   updateAnimateState('idle', true);
+                  // }
                 }}
               />
             </Float>
