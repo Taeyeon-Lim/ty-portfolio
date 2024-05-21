@@ -2,30 +2,21 @@
 
 import { useEffect } from 'react';
 import ChannelTalkService from '@Utils/channelTalkService';
-import { CHANNER_SECRET_KEY, CHNNERTALK_PLUGIN_KEY } from '@Utils/env';
 
-function ChannelTalkBoot() {
+function ChannelTalkBoot({ pluginKey }: { pluginKey?: string }) {
   useEffect(() => {
-    if (!CHANNER_SECRET_KEY || !CHNNERTALK_PLUGIN_KEY) return;
+    if (!pluginKey) return;
+
     const channelTalk = new ChannelTalkService();
 
-    channelTalk.boot(
-      {
-        pluginKey: CHNNERTALK_PLUGIN_KEY,
-      },
-      (error: any, user: any) => {
-        if (process.env.NODE_ENV === 'development') {
-          if (error) {
-            console.log('ChannelTalk boot error!');
-          }
-        }
+    channelTalk.boot({ pluginKey }, (error: any) => {
+      if (error) {
+        console.error('ChannelTalk boot error!');
       }
-    );
+    });
 
-    return () => {
-      channelTalk.shutdown();
-    };
-  }, []);
+    return () => channelTalk.shutdown();
+  }, [pluginKey]);
 
   return <></>;
 }

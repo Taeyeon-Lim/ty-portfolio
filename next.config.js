@@ -4,8 +4,6 @@ const path = require('path');
 const nextConfig = {
   env: {
     domainURL: 'https://tyeon-portfolio.vercel.app',
-    channerTalkPluginKey: 'f91dc301-1a56-4326-aa88-43aab9a9025a',
-    channerSecretKey: '148dbd1586a778b5e443935c27a16505',
     base64Placeholder:
       'data:image/svg+xml;base64,Cjxzdmcgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZyI+CiAgICAgIDxzdG9wIHN0b3AtY29sb3I9IiM1NTUiIG9mZnNldD0iNSUiIC8+CiAgICAgIDxzdG9wIHN0b3AtY29sb3I9IiM2NjYiIG9mZnNldD0iMTUlIiAvPgogICAgICA8c3RvcCBzdG9wLWNvbG9yPSIjODg4IiBvZmZzZXQ9IjM1JSIgLz4KICAgICAgPHN0b3Agc3RvcC1jb2xvcj0iIzY2NiIgb2Zmc2V0PSI1NSUiIC8+CiAgICAgIDxzdG9wIHN0b3AtY29sb3I9IiM1NTUiIG9mZnNldD0iMTAwJSIgLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9IiM1NTUiIC8+CiAgPHJlY3QgaWQ9InIiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZykiIC8+CiAgPGFuaW1hdGUgeGxpbms6aHJlZj0iI3IiIGF0dHJpYnV0ZU5hbWU9IngiIGZyb209Ii0xMDAlIiB0bz0iMjAwJSIgZHVyPSIxcyIgcmVwZWF0Q291bnQ9ImluZGVmaW5pdGUiICAvPgo8L3N2Zz4=',
   },
@@ -16,6 +14,13 @@ const nextConfig = {
   sassOptions: {
     includePaths: [path.join(__dirname, 'styles')],
   },
+  // webpack: (config, options) => {
+  //   config.module.rules.push({
+  //     test: /\.glsl/,
+  //     type: 'asset/source',
+  //   });
+  //   return config;
+  // },
   async headers() {
     return [
       {

@@ -8,8 +8,8 @@ const Navigator = dynamic(() => import('@Components/Navigator'));
 const ChannelTalkBoot = dynamic(() => import('@Components/ChannelTalkBoot'), {
   ssr: false,
 });
-import { Analytics } from '@vercel/analytics/react';
 
+import { Analytics } from '@vercel/analytics/react';
 import { DOMAIN_URL } from '@Utils/env';
 
 const notoSansKR_set = localFont({
@@ -128,10 +128,10 @@ export default function RootLayout({
         {process.env.NODE_ENV === 'production' && (
           <>
             {/* Prevent local CSP error message */}
-            <Analytics mode='production' />
+            {<Analytics mode='production' />}
 
             {/* only production */}
-            <ChannelTalkBoot />
+            <ChannelTalkBoot pluginKey={process.env.CHANNERTALK_PLUGIN_KEY} />
           </>
         )}
       </body>
