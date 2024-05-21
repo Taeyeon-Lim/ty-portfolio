@@ -1,8 +1,7 @@
 'use client';
 
 import * as THREE from 'three';
-import { Group } from 'three';
-import { useRef, useEffect, useCallback, useMemo } from 'react';
+import { useRef, useEffect, useCallback, startTransition } from 'react';
 
 import { GroupProps } from '@react-three/fiber';
 import { SpotLight, useAnimations, useGLTF, Outlines } from '@react-three/drei';
@@ -55,7 +54,7 @@ export default function Astronaut({
 }: {
   theme: Themes;
 } & GroupProps) {
-  const group = useRef<Group>(null!);
+  const group = useRef<THREE.Group>(null!);
 
   const { nodes, materials, animations } = useGLTF(
     '/portfolio/astronaut_draco/astronaut.gltf'
@@ -146,7 +145,9 @@ export default function Astronaut({
   const { updateSearchParam } = useUpdateSearchParams(null, 'push');
 
   const updateThemeNumber = useCallback(() => {
-    updateSearchParam('view', '0');
+    startTransition(() => {
+      updateSearchParam('view', '0');
+    });
   }, [updateSearchParam]);
 
   const intervalCallback = useCallback(() => {
