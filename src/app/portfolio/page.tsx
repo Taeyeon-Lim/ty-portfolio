@@ -83,6 +83,8 @@ export default function Portfolio({
 
   return (
     <main className={cx('portfolio')}>
+      <h2 className={'hide-header'}>Portfolio List, 포트폴리오 리스트</h2>
+
       <Suspense fallback={null}>
         <WelcomeText reverse={theme !== null} />
       </Suspense>
